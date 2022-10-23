@@ -16,6 +16,11 @@ This is my landlady's cat Grisou who is super adorable.
 
 ![](images/Grisou.jpg)
 
+
+We can try to use html code to format the image instead of using rmd language. 
+
+<img src="images/Grisou.jpg" style="width:25%">
+
 ```{r}
 library(tidyverse)
 
