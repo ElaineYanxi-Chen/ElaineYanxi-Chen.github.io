@@ -1,25 +1,20 @@
 ---
-title: "Plotly"
+title: "AirBNB Dashboard"
 output: 
-  html_document:
-    toc: true
-    toc_float: true
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
 ---
 
-We're going to make some plotly plots.
-
-## Load packages and data
-
-```{r}
+```{r setup, include=FALSE}
 library(tidyverse)
 library(p8105.datasets)
-
+library(flexdashboard)
 library(plotly)
 ```
 
-Let's get some data.
 
-```{r}
+```{r, include=FALSE}
 data("nyc_airbnb")
 
 nyc_airbnb =
@@ -36,8 +31,10 @@ nyc_airbnb =
   drop_na(rating)
 ```
 
+Column {data-width=650}
+-----------------------------------------------------------------------
 
-Let's make a scatterplot!
+### Chart A
 
 ```{r}
 nyc_airbnb %>% 
@@ -51,8 +48,10 @@ nyc_airbnb %>%
   )
 ```
 
+Column {data-width=350}
+-----------------------------------------------------------------------
 
-Can we make boxplots?? Sure can!
+### Chart B
 
 ```{r}
 nyc_airbnb %>% 
@@ -61,8 +60,7 @@ nyc_airbnb %>%
          type = "box", colors = "viridis")
 ```
 
-
-Can we make a bar plot?
+### Chart C
 
 ```{r}
 nyc_airbnb %>% 
@@ -73,25 +71,3 @@ nyc_airbnb %>%
     type = "bar")
 ```
 
-
-## ggplotly ...
-
-```{r}
-ggp_scatterplot = 
-  nyc_airbnb %>% 
-  ggplot(aes(x = lat, y = long, colour = price)) +
-  geom_point()
-
-ggplotly(ggp_scatterplot)
-```
-
-Quick and easier to make plots in ggplot, and then throw it directly into `ggplotly` and can be converted to an interactive plot very easily
-
-Drawback: slower to use, difficult to control, harder for user; not encouraged to use frequently
-
-Probably best for yourself, and not for sharing with other users. 
-
-
-## Create a dashboard ...
-
-Not here though.
